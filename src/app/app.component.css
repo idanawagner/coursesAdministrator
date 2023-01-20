@@ -1,0 +1,18 @@
+.grid__container{
+    display: grid;
+    grid-template-areas: 
+    "header header  header  header  header  header"
+    "navbar  main   main    main    main    main";
+}
+
+.grid__header{
+    grid-area: header;
+}
+
+.grid__navbar{
+    grid-area: navbar;
+}
+
+.grid__students{
+    grid-area: main;
+}

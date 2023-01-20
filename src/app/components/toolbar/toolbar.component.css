@@ -1,0 +1,13 @@
+.toolbar__title{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.toolbar__containerItems{
+    background-color: rgb(199, 199, 244);
+}
+
+
+
+.toolbar__containerItems--items{
+    background-color: beige;
+}
