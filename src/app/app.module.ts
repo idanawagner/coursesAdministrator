@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { StudentsComponent } from './components/students/students.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     ToolbarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

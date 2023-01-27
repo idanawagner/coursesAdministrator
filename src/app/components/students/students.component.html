@@ -1,16 +1,36 @@
 <div>
     <div class="students__title m-1">
         <h3>
-            Students list
+            {{title}}
         </h3>
     </div>
-    <div class="students__list m-1">
-        <p>Idana Wagner Cabrera</p>
-        <p>Idana Wagner Cabrera</p>
-        <p>Idana Wagner Cabrera</p>
-        <p>Idana Wagner Cabrera</p>
-        <p>Idana Wagner Cabrera</p>
-        <p>Idana Wagner Cabrera</p>
-        <p>Idana Wagner Cabrera</p>
+    <div>
+        <input type="text" [(ngModel)]="searchStudent" (keypress)="searchStudent">
+        <div [ngSwitch]="searchStudent">
+            <div *ngSwitchCase="'Maria'">Maria is active on the platform</div>
+            <div *ngSwitchCase="'Idana'">Idana is active on the platform</div>
+            <div *ngSwitchCase="'Antonio'">Antonio is active on the platform</div>
+            <div *ngSwitchCase="'Dario'">Dario is not active on the platform</div>
+            <div *ngSwitchCase="'Raquel'">Raquel is not active on the platform</div>
+            <div *ngSwitchDefault>Enter the user you wish to search for</div>
+        </div>
     </div>
+    <div class="students__list m-1">
+        <ul>
+            <li *ngFor="let student of studentList" [style.Color]="student.isActive === true ? 'blue' : 'red'">
+                {{ student.name }}
+                <button *ngIf="student.isActive == false">Activate</button>
+            </li>
+        </ul>
+    </div>
+    <p [style.backgroundColor]="searchStudent === 'Idana' ? 'grey' : 'turquoise'">
+        {{studentList[0] | json}}
+    </p>
+
+    <p [ngClass]="searchStudent === 'Dario' ? 'isDario' : 'isNotDario'">
+        {{studentList[2] | json}}
+    </p>
+
+
+   
 </div>
