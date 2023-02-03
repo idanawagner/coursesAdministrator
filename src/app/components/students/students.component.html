@@ -24,11 +24,11 @@
         </ul>
     </div>
     <p [style.backgroundColor]="searchStudent === 'Idana' ? 'grey' : 'turquoise'">
-        {{studentList[0] | json}}
+        {{studentList[0].name | json}}
     </p>
 
     <p [ngClass]="searchStudent === 'Dario' ? 'isDario' : 'isNotDario'">
-        {{studentList[2] | json}}
+        {{studentList[2].name | json}}
     </p>
 
 

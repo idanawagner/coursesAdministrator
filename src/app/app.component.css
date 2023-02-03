@@ -1,8 +1,8 @@
 .grid__container{
     display: grid;
     grid-template-areas: 
-    "header header  header  header  header  header"
-    "navbar  main   main    main    main    main";
+    "header header  header  header  header header"
+    "navbar  main   main    login    login  register";
 }
 
 .grid__header{
@@ -15,4 +15,12 @@
 
 .grid__students{
     grid-area: main;
+}
+
+.grid__login{
+    grid-area: login;
+}
+
+.grid__register{
+    grid-area: register;
 }

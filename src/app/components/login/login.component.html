@@ -1,0 +1,23 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()" >
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div class="valid" *ngIf="loginForm.controls['email'].valid">Correct email address</div>
+        <div class="invalid" *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].errors?.['required']">Incorrect email address</div>
+        <div class="invalid" *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].errors?.['pattern']">The email format is incorrect</div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+        <div class="valid" *ngIf="loginForm.controls['password'].valid">Correct password</div>
+        <div class="invalid" *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].errors?.['required']">Incorrect password</div>
+        <div class="invalid" *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].errors?.['minlength']">The password must contain at least 8 characters</div>
+    </div>
+    <div class="mb-3 form-check">
+        <input formControlName="rememberData" type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Remember data</label>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Log in</button>
+    <button type="reset" class="btn btn-secondary" >Clear</button>
+
+</form>
