@@ -17,7 +17,11 @@
         <input formControlName="rememberData" type="checkbox" class="form-check-input" id="exampleCheck1">
         <label class="form-check-label" for="exampleCheck1">Remember data</label>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Log in</button>
-    <button type="reset" class="btn btn-secondary" >Clear</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+        Log in
+    </button>
+    <button mat-fab  color="primary" type="reset" class="btn btn-secondary" >
+        <mat-icon>delete</mat-icon>
+    </button>
 
 </form>

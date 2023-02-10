@@ -1,36 +1,43 @@
-<div>
-    <div class="students__title m-1">
-        <h3>
-            {{title}}
-        </h3>
-    </div>
-    <div>
-        <input type="text" [(ngModel)]="searchStudent" (keypress)="searchStudent">
-        <div [ngSwitch]="searchStudent">
-            <div *ngSwitchCase="'Maria'">Maria is active on the platform</div>
-            <div *ngSwitchCase="'Idana'">Idana is active on the platform</div>
-            <div *ngSwitchCase="'Antonio'">Antonio is active on the platform</div>
-            <div *ngSwitchCase="'Dario'">Dario is not active on the platform</div>
-            <div *ngSwitchCase="'Raquel'">Raquel is not active on the platform</div>
-            <div *ngSwitchDefault>Enter the user you wish to search for</div>
-        </div>
-    </div>
-    <div class="students__list m-1">
-        <ul>
-            <li *ngFor="let student of studentList" [style.Color]="student.isActive === true ? 'blue' : 'red'">
-                {{ student.name }}
-                <button *ngIf="student.isActive == false">Activate</button>
-            </li>
-        </ul>
-    </div>
-    <p [style.backgroundColor]="searchStudent === 'Idana' ? 'grey' : 'turquoise'">
-        {{studentList[0].name | json}}
-    </p>
+<h2> {{title}}</h2>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
 
-    <p [ngClass]="searchStudent === 'Dario' ? 'isDario' : 'isNotDario'">
-        {{studentList[2].name | json}}
-    </p>
+    <!-- Age Column -->
+    <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef>Age</th>
+        <td mat-cell *matCellDef="let element">{{element.age}}</td>
+    </ng-container>
+
+    <!-- Commission Column -->
+    <ng-container matColumnDef="commission">
+        <th mat-header-cell *matHeaderCellDef>Commission</th>
+        <td mat-cell *matCellDef="let element">{{element.commission}}</td>
+    </ng-container>
+    <!-- Active Column -->
+    <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef>Active</th>
+        <td mat-cell *matCellDef="let element">{{element.isActive}}</td>
+    </ng-container>
+
+    <!-- Shares Column -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary" (click)="openEdit(element)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
 
 
-   
-</div>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+</table>
