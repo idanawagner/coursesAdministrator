@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './components/modules/material.module';
 import { EditStudentsListComponent } from './components/edit-students-list/edit-students-list.component';
 import { FormatDatePipe } from './pipes/format-date.pipe';
+import { DirectiveFontDirective } from './directives/directive-font.directive';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormatDatePipe } from './pipes/format-date.pipe';
     LoginComponent,
     HomeComponent,
     EditStudentsListComponent,
-    FormatDatePipe
+    FormatDatePipe,
+    DirectiveFontDirective
   ],
   imports: [
     BrowserModule,
