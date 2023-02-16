@@ -18,6 +18,7 @@ import { MaterialModule } from './components/modules/material.module';
 import { EditStudentsListComponent } from './components/edit-students-list/edit-students-list.component';
 import { FormatDatePipe } from './pipes/format-date.pipe';
 import { DirectiveFontDirective } from './directives/directive-font.directive';
+import { FormatNamePipe } from './pipes/format-name.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { DirectiveFontDirective } from './directives/directive-font.directive';
     HomeComponent,
     EditStudentsListComponent,
     FormatDatePipe,
-    DirectiveFontDirective
+    DirectiveFontDirective,
+    FormatNamePipe
   ],
   imports: [
     BrowserModule,
