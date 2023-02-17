@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Student } from '../models/student';
 
 @Pipe({
   name: 'formatName'
