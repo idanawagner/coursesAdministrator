@@ -4,45 +4,41 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
 import { AppComponent } from './app.component';
-import { StudentsComponent } from './components/students/students.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { CourseListComponent } from './components/course-list/course-list.component';
+import { RegisterComponent } from './components/register/components/register.component';
 
 // Modules
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './components/modules/material.module';
-import { EditStudentsListComponent } from './components/edit-students-list/edit-students-list.component';
-import { FormatDatePipe } from './pipes/format-date.pipe';
-import { DirectiveFontDirective } from './directives/directive-font.directive';
-import { FormatNamePipe } from './pipes/format-name.pipe';
+import { DataService } from './services/data.service';
+import { token } from './config';
+import { config } from 'rxjs';
+import { StudentsModule } from './components/students/students.module';
+import { CoursesModule } from './components/courses/courses.module';
+import { HomeModule } from './components/home/home.module';
+import { ToolbarModule } from './components/toolbar/toolbar.module';
+import { NavbarModule } from './components/navbar/navbar.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentsComponent,
-    NavbarComponent,
-    ToolbarComponent,
-    CourseListComponent,
     RegisterComponent,
-    LoginComponent,
-    HomeComponent,
-    EditStudentsListComponent,
-    FormatDatePipe,
-    DirectiveFontDirective,
-    FormatNamePipe
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     NoopAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    StudentsModule,
+    CoursesModule,
+    HomeModule,
+    ToolbarModule,
+    NavbarModule
   ],
-  providers: [],
+  providers: [
+    {provide: token, useValue: config}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
