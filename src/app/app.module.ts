@@ -17,11 +17,14 @@ import { CoursesModule } from './components/courses/courses.module';
 import { HomeModule } from './components/home/home.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { NavbarModule } from './components/navbar/navbar.module';
+import { AppRoutingModule } from './app-routing.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
+    NotFoundComponent,
 
   ],
   imports: [
@@ -34,7 +37,8 @@ import { NavbarModule } from './components/navbar/navbar.module';
     CoursesModule,
     HomeModule,
     ToolbarModule,
-    NavbarModule
+    NavbarModule,
+    AppRoutingModule
   ],
   providers: [
     {provide: token, useValue: config}

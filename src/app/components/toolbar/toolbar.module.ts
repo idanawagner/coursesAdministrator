@@ -5,6 +5,7 @@ import { ToolbarComponent } from './components/toolbar.component';
 import { NavbarModule } from '../navbar/navbar.module';
 import { LoginModule } from '../login/login.module';
 import { DirectiveFontDirective } from './directives/directive-font.directive';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -19,7 +20,8 @@ import { DirectiveFontDirective } from './directives/directive-font.directive';
     CommonModule,
     MaterialModule,
     NavbarModule,
-    LoginModule
+    LoginModule,
+    RouterModule
 
   ],
   exports:[
