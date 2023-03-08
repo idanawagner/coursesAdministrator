@@ -1,0 +1,48 @@
+<form action="" [formGroup]="formAddCourse" (ngSubmit)="addCourse()">
+  <h3 class="addCourse_title">Add Course</h3>
+  <div class="addCourse_container">
+
+    <div>
+      <mat-form-field appearance="fill" class="addCourse_input">
+        <mat-label>Name</mat-label>
+        <input matInput #input formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="addCourse_input">
+        <mat-label>Professor</mat-label>
+        <input matInput #input formControlName="professor">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="addCourse_input">
+        <mat-label>Commision</mat-label>
+        <input matInput #input formControlName="commission">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill" class="addCourse_input">
+        <mat-label>Start</mat-label>
+        <input matInput [matDatepicker]="startDate" formControlName="startDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="startDate"></mat-datepicker-toggle>
+        <mat-datepicker #startDate></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="addCourse_input">
+        <mat-label>End</mat-label>
+        <input matInput [matDatepicker]="endDate" formControlName="endDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-slide-toggle>Open</mat-slide-toggle>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="cancelEdit()">Cancel</button>
+      <button mat-button type="submit">Save</button>
+    </div>
+  </div>
+</form>

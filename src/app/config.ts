@@ -1,6 +1,6 @@
 import { InjectionToken } from "@angular/core"
-import { Configuration } from "./models/configuration"
-import { DataService } from "./services/data.service"
+import { Configuration } from "./shared/models/configuration"
+import { DataService } from "./shared/services/data.service"
 
 export const config: Configuration = {
   urlAPI: 'https//',
