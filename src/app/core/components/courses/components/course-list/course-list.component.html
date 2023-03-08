@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
       <button mat-button mat-raised-button color="primary" class="mt-4 mb-4" (click)="addCourse()">AddCourse</button>
-        <div class="col" *ngFor="let course of courseList">
+        <div class="col" *ngFor="let course of courseList"  >
             <mat-card class="">
                 <mat-card-header>
                   <mat-card-title>{{ course.name}}</mat-card-title>
@@ -15,10 +15,10 @@
                   <span>Date: {{course.startDate | formatDate }} - {{course.endDate| formatDate}}</span>
                 </mat-card-content>
                 <mat-card-actions align="end">
-                  <button mat-button color="primary">
+                  <button mat-button color="primary" (click)="editCourse(course)">
                     <mat-icon>edit</mat-icon>
                   </button>
-                  <button mat-button color="warn">
+                  <button mat-button color="warn" (click)="deleteCourse(course)">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </mat-card-actions>

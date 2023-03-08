@@ -1,0 +1,54 @@
+<form action="" [formGroup]="editCourse">
+  <h3 class="editCourse_title">Edit Course</h3>
+  <div class="editCourse_container">
+
+    <div>
+      <mat-form-field appearance="fill" class="editCourse_input">
+        <mat-label>Name</mat-label>
+        <input matInput #input formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="editCourse_input">
+        <mat-label>Professor</mat-label>
+        <input matInput #input formControlName="professor">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="editCourse_input">
+        <mat-label>Commision</mat-label>
+        <input matInput #input formControlName="commission">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill" class="editCourse_input">
+        <mat-label>Start</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="startDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="editCourse_input">
+        <mat-label>End</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="endDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill" class="editCourse_input">
+        <mat-label>Status</mat-label>
+        <mat-select>
+          <mat-option value="option">Open</mat-option>
+          <mat-option value="option">Close</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button>Close</button>
+      <button mat-button type="submit">Edit</button>
+    </div>
+  </div>
+</form>

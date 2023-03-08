@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, FormGroupName } from '@angular/forms';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Component, Inject } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Student } from 'src/app/models/student';
-import { DataService } from 'src/app/services/data.service';
-import { StudentsComponent } from '../students/students.component';
+
 
 @Component({
   selector: 'app-edit-students-list',
@@ -16,7 +15,6 @@ export class EditStudentsListComponent {
   constructor(
     private dialogRef : MatDialogRef<EditStudentsListComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Student,
-    public dataService: DataService,
   ){
     this.editForm = new FormGroup({
       name : new FormControl(data.name),

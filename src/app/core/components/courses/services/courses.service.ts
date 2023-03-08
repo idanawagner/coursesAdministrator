@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Course } from 'src/app/models/course';
 
 @Injectable()
@@ -33,9 +34,15 @@ export class CoursesService {
       endDate: new Date(),
     },
   ];
-  constructor() { }
+  // private courses: Array<Course> = [];
 
-  getCourseListService(): Promise<Array<Course>> {
+  private courses$: BehaviorSubject<Array<Course>>;
+  constructor() {
+    this.courses$ = new BehaviorSubject<Array<Course>>(this.courseList);
+
+   }
+
+  getCourseListService(): Promise<Array<Course>>{
     return new Promise((resolve, reject) => {
       if (this.courseList.length > 0) {
         resolve(this.courseList);
@@ -44,7 +51,23 @@ export class CoursesService {
       }
     });
   }
-  addCourseService(course: Course) {
+  addCourseService(course: Course):void {
     this.courseList.push(course);
+    this.courses$.next(this.courseList)
+  };
+
+  editCourseService(course:Course):void {
+    let idx = this.courseList.findIndex((c:Course)=> c.commission === course.commission)
+    if (idx > -1){
+      this.courseList[idx] = course
+      this.courses$.next(this.courseList)
+    }
   }
+  deleteCoursesService(course: Course){
+    let idx = this.courseList.findIndex((c:Course)=> c.commission === course.commission);
+    this.courseList.splice(idx,1)
+    this.courses$.next(this.courseList);
+
+  }
+
 }

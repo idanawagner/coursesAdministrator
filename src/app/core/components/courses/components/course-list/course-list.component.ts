@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { token } from 'src/app/config';
 import { Configuration } from 'src/app/models/configuration';
 import { Course } from 'src/app/models/course';
-import { DataService } from 'src/app/services/data.service';
 import { CoursesService } from '../../services/courses.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-list',
@@ -17,7 +17,8 @@ export class CourseListComponent implements OnInit{
 
   constructor(
     private coursesService: CoursesService,
-    @Inject(token) private config: Configuration
+    @Inject(token) private config: Configuration,
+    private router: Router
   ){}
 
   ngOnInit(): void {
@@ -41,4 +42,10 @@ export class CourseListComponent implements OnInit{
   addCourse(){
     return this.coursesService.addCourseService(this.newCourse);
   };
+  editCourse(course: Course){
+    this.router.navigate(['courses/editCourse',course])
+  }
+  deleteCourse(course: Course){
+    this.coursesService.deleteCoursesService(course)
+  }
 }

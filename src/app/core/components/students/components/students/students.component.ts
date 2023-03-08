@@ -1,12 +1,12 @@
 import { Component, Inject, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Student } from '../../../../models/student';
 import { EditStudentsListComponent } from '../edit-students-list/edit-students-list.component';
 import { Configuration } from 'src/app/models/configuration';
 import { token } from 'src/app/config';
 import { Subscription } from 'rxjs';
 import { StudentsService } from '../../services/students.service';
+import { Student } from 'src/app/models/student';
 
 @Component({
   selector: 'app-students',

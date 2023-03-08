@@ -6,12 +6,15 @@ import { CoursesService } from "./services/courses.service";
 import { FormatDatePipe } from "./pipes/format-date.pipe";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CourseListComponent } from "./components/course-list/course-list.component";
+import { CoursesRountingModule } from "./courses.routing.module";
+import { EditCourseComponent } from './components/edit-course/edit-course/edit-course.component';
 
 
 @NgModule({
   declarations: [
     CourseListComponent,
-    FormatDatePipe
+    FormatDatePipe,
+    EditCourseComponent
 
   ],
   imports: [
@@ -19,6 +22,7 @@ import { CourseListComponent } from "./components/course-list/course-list.compon
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    CoursesRountingModule,
 
   ],
   exports: [

@@ -25,7 +25,7 @@ import { ToolbarModule } from '../toolbar/toolbar.module';
       CoursesModule,
       StudentsModule,
       LoginModule,
-      ToolbarModule
+      ToolbarModule,
 
 
 
