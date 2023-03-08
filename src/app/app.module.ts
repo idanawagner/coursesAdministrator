@@ -4,24 +4,31 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './components/register/components/register.component';
 
 // Modules
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from './components/modules/material.module';
+
 import { DataService } from './services/data.service';
 import { token } from './config';
 import { config } from 'rxjs';
-import { StudentsModule } from './components/students/students.module';
-import { CoursesModule } from './components/courses/courses.module';
-import { HomeModule } from './components/home/home.module';
-import { ToolbarModule } from './components/toolbar/toolbar.module';
-import { NavbarModule } from './components/navbar/navbar.module';
+
+import { InscriptionsModule } from './core/components/inscriptions/inscriptions.module';
+import { RegisterComponent } from './core/components/register/components/register.component';
+import { AppRoutingModule } from './app-routing.module';
+import { CoursesModule } from './core/components/courses/courses.module';
+import { HomeModule } from './core/components/home/home.module';
+import { MaterialModule } from './core/components/modules/material.module';
+import { NavbarModule } from './core/components/navbar/navbar.module';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
+import { StudentsModule } from './core/components/students/students.module';
+import { ToolbarModule } from './core/components/toolbar/toolbar.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
+    NotFoundComponent,
 
   ],
   imports: [
@@ -34,7 +41,9 @@ import { NavbarModule } from './components/navbar/navbar.module';
     CoursesModule,
     HomeModule,
     ToolbarModule,
-    NavbarModule
+    NavbarModule,
+    AppRoutingModule,
+    InscriptionsModule
   ],
   providers: [
     {provide: token, useValue: config}
