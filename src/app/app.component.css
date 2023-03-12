@@ -1,6 +1,6 @@
 .grid__container{
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
     "header header  header  header  header header"
     "navbar  main   main    login    login  register";
 }

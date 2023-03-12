@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 import { LoginComponent } from './components/login.component';
-import { MaterialModule } from 'src/app/shared/modules/material.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { LoginRoutingModule } from './login-routing.module';
+import { LoginService } from './service/login.service';
+import { HomeModule } from '../home/home.module';
 
 
 
@@ -14,14 +16,16 @@ import { MaterialModule } from 'src/app/shared/modules/material.module';
 
   imports: [
     CommonModule,
-    MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NoopAnimationsModule,
+    SharedModule,
+    LoginRoutingModule
 
   ],
   exports:[
     LoginComponent
+  ],
+
+  providers:[
+    LoginService
   ]
 })
 export class LoginModule { }

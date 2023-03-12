@@ -6,7 +6,8 @@ import { DirectiveFontDirective } from './directives/directive-font.directive';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/modules/material.module';
 import { LoginModule } from 'src/app/components/login/login.module';
-import { NavbarModule } from 'src/app/components/navbar/navbar.module';
+import { NavbarModule } from '../navbar/navbar.module';
+
 
 
 

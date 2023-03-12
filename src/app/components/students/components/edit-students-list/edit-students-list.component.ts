@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Router } from '@angular/router';
 import { Student } from 'src/app/shared/models/student';
 
 
@@ -15,6 +16,7 @@ export class EditStudentsListComponent {
   constructor(
     private dialogRef : MatDialogRef<EditStudentsListComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Student,
+    private router: Router
   ){
     this.editForm = new FormGroup({
       name : new FormControl(data.name),
@@ -26,9 +28,9 @@ export class EditStudentsListComponent {
   }
   newFormSubmit(){
     this.data = this.editForm.value
-  }
-  closeDialog(){
     this.dialogRef.close(this.data)
-
   }
+  // closeDialog(){
+  //   this.router.navigate(['students'])
+  // }
 }

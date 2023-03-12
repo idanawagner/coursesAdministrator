@@ -9,9 +9,11 @@ import { StudentsComponent } from './components/students/components/students/stu
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full' },
-  {path: 'home', component: HomeComponent },
-  {path: 'login', component: LoginComponent },
-  {path: 'students', component: StudentsComponent },
+  {path: 'courses', loadChildren: () => import('./components/courses/courses.module').then((mod) => mod.CoursesModule)},
+  {path: 'home', loadChildren: () => import('./components/home/home.module').then((mod) => mod.HomeModule)},
+  {path: 'students', loadChildren: () => import('./components/students/students.module').then((mod) => mod.StudentsModule)},
+  {path: 'login', loadChildren: () => import('./components/login/login.module').then((mod) => mod.LoginModule)},
+  {path: 'inscriptions', loadChildren: () => import('./components/inscriptions/inscriptions.module').then((mod) => mod.InscriptionsModule)},
   {path: '**', component: NotFoundComponent },
 ]
 

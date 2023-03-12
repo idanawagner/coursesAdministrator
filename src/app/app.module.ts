@@ -7,18 +7,11 @@ import { AppComponent } from './app.component';
 // Modules
 import { token } from './config';
 import { config } from 'rxjs';
-
 import { AppRoutingModule } from './app-routing.module';
-
-import { CoursesModule } from './components/courses/courses.module';
-import { HomeModule } from './components/home/home.module';
-import { InscriptionsModule } from './components/inscriptions/inscriptions.module';
-import { NavbarModule } from './components/navbar/navbar.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/components/register.component';
-import { StudentsModule } from './components/students/students.module';
-
 import { CoreModule } from './core/core.module';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -33,12 +26,9 @@ import { CoreModule } from './core/core.module';
   imports: [
     BrowserModule,
     CoreModule,
-    StudentsModule,
-    CoursesModule,
-    HomeModule,
-    NavbarModule,
+    NoopAnimationsModule,
     AppRoutingModule,
-    InscriptionsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     {provide: token, useValue: config}

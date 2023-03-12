@@ -1,3 +1,10 @@
-.mat-tab-group {
-    margin-bottom: 48px;
-  }
+.home_title{
+  margin: 2rem;
+  padding: 1rem;
+  color: azure;
+  font-size: 3rem;
+  mix-blend-mode: color-dodge;
+  padding-left: 21rem;
+  padding-top: 2.5rem;
+}
+

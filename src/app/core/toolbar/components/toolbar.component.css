@@ -1,3 +1,43 @@
+p{
+  margin: 0rem;
+}
+.toolbar{
+  background-color: transparent;
+   display: flex;
+}
 .example-spacer {
     flex: 1 1 auto;
   }
+  .title{
+    color: azure;
+    font-size: 2rem!important;
+    mix-blend-mode: color-dodge;
+    padding-left: 31.5rem;
+
+  }
+
+
+.toolbar_containerIcons{
+  margin-top: -4rem;
+    padding-top: 1rem;
+    position: relative;
+    margin-left: 5rem;
+    margin-right: -4rem;
+
+}
+
+.toolbar_icons{
+  display: flex!important;
+  align-items: center!important;
+  justify-content: center!important;
+  position: relative;
+  padding: 1.5rem;
+  color: aliceblue;
+  mix-blend-mode: screen;
+  font-size: 2.8rem!important;
+  margin: -2.5rem!important ;
+  background-color: transparent;
+  width: 100%!important;
+
+
+}
