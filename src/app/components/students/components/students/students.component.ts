@@ -4,9 +4,11 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { EditStudentsListComponent } from '../edit-students-list/edit-students-list.component';
 import { Configuration } from 'src/app/shared/models/configuration';
 import { token } from 'src/app/config';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { StudentsService } from '../../services/students.service';
 import { Student } from 'src/app/shared/models/student';
+import { Session } from 'src/app/shared/models/session';
+import { SessionService } from 'src/app/core/services/session.service';
 
 @Component({
   selector: 'app-students',
@@ -21,11 +23,13 @@ export class StudentsComponent implements OnInit, OnDestroy {
   dataSource!: MatTableDataSource<Student>;
   @ViewChild(MatTable) table!: MatTable<Student>;
   columns: string[] = ['name', 'age', 'commission', 'isActive', 'actions'];
+  session$!: Observable<Session>
 
   constructor(
     private dialog: MatDialog,
     private studentsService: StudentsService,
-    @Inject(token) private config: Configuration
+    @Inject(token) private config: Configuration,
+    private sessionService: SessionService
   ) {}
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Student>();
@@ -34,6 +38,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
       .subscribe((students: Array<Student>) => {
         this.dataSource.data = students;
       });
+    this.session$ = this.sessionService.getSession();
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

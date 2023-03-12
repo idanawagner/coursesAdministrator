@@ -1,16 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CoursesModule } from '../courses/courses.module';
-import { StudentsModule } from '../students/students.module';
-import { LoginModule } from '../login/login.module';
-import { MaterialModule } from 'src/app/shared/modules/material.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { RouterModule } from '@angular/router';
+import { HomeRoutingModule } from './home-routing.module';
 import { ToolbarModule } from 'src/app/core/toolbar/toolbar.module';
-
-
-
-
 
 @NgModule({
     declarations: [
@@ -19,16 +13,10 @@ import { ToolbarModule } from 'src/app/core/toolbar/toolbar.module';
     ],
     imports: [
       CommonModule,
-      MaterialModule,
-      FormsModule,
-      ReactiveFormsModule,
-      CoursesModule,
-      StudentsModule,
-      LoginModule,
-      ToolbarModule,
-
-
-
+      SharedModule,
+      RouterModule,
+      HomeRoutingModule,
+      ToolbarModule
     ],
     exports: [
         HomeComponent,

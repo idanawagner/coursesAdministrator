@@ -1,18 +1,28 @@
-<p>
-  <mat-toolbar color="primary">
-    <!-- <button mat-icon-button [matMenuTriggerFor]="menu"> -->
-      <!-- <mat-icon>menu</mat-icon>
-    </button> -->
-    <!-- <mat-menu #menu="matMenu"> -->
-      <!-- </mat-menu> -->
-      <a mat-button [routerLink]="['/home']" routerLinkActive="router-link-active"  >
-      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+<mat-toolbar class="toolbar">
+  <div class="toolbar_containerIcons">
+    <a mat-button [routerLink]="['/home']" routerLinkActive="router-link-active">
+      <mat-icon aria-hidden="false" class="toolbar_icons"  aria-label="Example home icon" fontIcon="home"></mat-icon>
     </a>
-      <span appDirectiveFont>Welcome to WINCourses</span>
-      <span class="example-spacer"></span>
-      <app-navbar></app-navbar>
-    <a mat-button [routerLink]="['/login']" routerLinkActive="router-link-active"  >
-      <mat-icon>login</mat-icon>
+  </div>
+  <span appDirectiveFont class="title">WINCourses</span>
+  <span class="example-spacer"></span>
+  <ng-container *ngIf="session$ | async as session">
+    <p *ngIf="session.activeSession">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon class="toolbar_icons">menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <app-navbar></app-navbar>
+      </mat-menu>
+    </p>
+  </ng-container>
+  <div class="toolbar_containerIcons">
+
+    <a mat-button [routerLink]="['/login']" routerLinkActive="router-link-active">
+      <mat-icon class="toolbar_icons">login</mat-icon>
     </a>
-  </mat-toolbar>
-</p>
+    <a mat-button [routerLink]="['/home']" routerLinkActive="router-link-active" (click)="logout()">
+      <mat-icon class="toolbar_icons">logout</mat-icon>
+    </a>
+  </div>
+</mat-toolbar>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InscriptionsComponent } from './components/inscriptions/inscriptions.component';
+import { InscriptionsRoutingModule } from './inscriptions-routing.module';
 
 
 
@@ -10,7 +11,8 @@ import { InscriptionsComponent } from './components/inscriptions/inscriptions.co
 
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    InscriptionsRoutingModule
   ],
   exports: [InscriptionsComponent]
 })

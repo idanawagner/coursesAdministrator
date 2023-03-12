@@ -1,5 +1,8 @@
-form{
-    margin: 0 auto;
+.login_form{
+  display: grid;
+  place-content: center;
+  margin-top: 8rem;
+  justify-items: center;
 }
 
 .valid{
@@ -8,4 +11,7 @@ form{
 
 .invalid{
     color: red;
+}
+.login_input{
+  width: 100%;
 }

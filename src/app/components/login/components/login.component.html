@@ -1,27 +1,56 @@
-<form [formGroup]="loginForm" (ngSubmit)="login()" >
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div class="valid" *ngIf="loginForm.controls['email'].valid">Correct email address</div>
-        <div class="invalid" *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].errors?.['required']">Incorrect email address</div>
-        <div class="invalid" *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].errors?.['pattern']">The email format is incorrect</div>
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
-        <div class="valid" *ngIf="loginForm.controls['password'].valid">Correct password</div>
-        <div class="invalid" *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].errors?.['required']">Incorrect password</div>
-        <div class="invalid" *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].errors?.['minlength']">The password must contain at least 8 characters</div>
-    </div>
-    <div class="mb-3 form-check">
-        <input formControlName="rememberData" type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Remember data</label>
-    </div>
-    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
-        Log in
-    </button>
-    <button mat-fab  color="primary" type="reset" class="btn btn-secondary" >
-        <mat-icon>delete</mat-icon>
-    </button>
 
+ <!-- Email -->
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="login_form">
+  <div class="login_input" >
+    <mat-form-field appearance="fill" class="login_input"  >
+      <mat-label>Enter your email</mat-label>
+      <input matInput formControlName="email">
+    </mat-form-field>
+    <div>
+
+      <!-- Errors -->
+      <div class="valid" *ngIf="loginForm.controls['email'].valid">Correct email address</div>
+      <div class="invalid" *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].errors?.['required']">
+        Incorrect email address</div>
+      <div class="invalid" *ngIf="loginForm.controls['email'].dirty && loginForm.controls['email'].errors?.['pattern']">
+        The email format is incorrect</div>
+    </div>
+  </div>
+
+    <!-- Password -->
+  <div class="login_input">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+      <!-- Errors -->
+    <div>
+      <div class="valid" *ngIf="loginForm.controls['password'].valid">Correct password</div>
+      <div class="invalid"
+        *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].errors?.['required']">Incorrect
+        password</div>
+      <div class="invalid"
+        *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].errors?.['minlength']">The
+        password must contain at least 8 characters</div>
+    </div>
+  </div>
+  <div class="m-3">
+
+    <mat-slide-toggle color="primary" formControlName="administrator">Administrator</mat-slide-toggle>
+  </div>
+
+<div>
+
+  <button mat-raised-button color="primary" class="m-3" type="submit" [disabled]="loginForm.invalid">
+    Log in
+  </button>
+  <button mat-fab color="primary" type="reset" class="btn btn-secondary m-3">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
 </form>
