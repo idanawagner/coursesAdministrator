@@ -6,10 +6,10 @@ import { Directive, ElementRef, Renderer2 } from '@angular/core';
 export class DirectiveFontDirective {
 
   constructor(
-    private elemento: ElementRef,
+    private element: ElementRef,
     private renderer: Renderer2
   ) {
-    this.renderer.setStyle(this.elemento.nativeElement, 'font-size', '20px')
+    this.renderer.setStyle(this.element.nativeElement, 'font-size', '20px')
    }
 
 }

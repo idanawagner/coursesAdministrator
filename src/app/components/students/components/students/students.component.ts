@@ -3,26 +3,31 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { EditStudentsListComponent } from '../edit-students-list/edit-students-list.component';
 import { Configuration } from 'src/app/shared/models/configuration';
-import { token } from 'src/app/config';
+import { token } from 'src/app/environment/config';
 import { Observable, Subscription } from 'rxjs';
 import { StudentsService } from '../../services/students.service';
 import { Student } from 'src/app/shared/models/student';
 import { Session } from 'src/app/shared/models/session';
 import { SessionService } from 'src/app/core/services/session.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-students',
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.css'],
 })
-export class StudentsComponent implements OnInit, OnDestroy {
+export class StudentsComponent implements OnInit {
   title: string = 'Student List';
 
-  studentList!: Array<Student>;
+  students$!: Observable<Array<Student>>
   subscription!: Subscription;
   dataSource!: MatTableDataSource<Student>;
   @ViewChild(MatTable) table!: MatTable<Student>;
-  columns: string[] = ['name', 'age', 'commission', 'isActive', 'actions'];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  columns: string[] = ['name', 'age','courseEnrolled', 'commission', 'isActive', 'actions'];
   session$!: Observable<Session>
 
   constructor(
@@ -31,17 +36,21 @@ export class StudentsComponent implements OnInit, OnDestroy {
     @Inject(token) private config: Configuration,
     private sessionService: SessionService
   ) {}
+
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<Student>();
-    this.subscription = this.studentsService
-      .getStudentListObservable()
-      .subscribe((students: Array<Student>) => {
-        this.dataSource.data = students;
-      });
+    this.suscribeStudentList();
     this.session$ = this.sessionService.getSession();
   }
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  suscribeStudentList(){
+    this.subscription = this.studentsService.getStudentListObservable().subscribe((students: Array<Student>) => {
+      this.dataSource.data = students;
+      });
   }
 
   editStudent(student: Student) {
@@ -49,36 +58,55 @@ export class StudentsComponent implements OnInit, OnDestroy {
       data: student,
     });
     dialogRef.afterClosed().subscribe((result) => {
-      let obj = {
+      let editStudent = {
+        idStudent: student.idStudent,
         name: result.name,
         lastName: result.lastName,
         age: parseInt(result.age),
-        commission: parseInt(result.commission),
+        courseEnrolled:result.courseEnrolled,
         isActive: result.isActive,
       };
+      this.studentsService.editStudentService(editStudent).subscribe((student) =>{
+        this.suscribeStudentList()
+        });
 
-      this.studentsService.editStudentService(obj, student);
     });
   }
 
   addStudent() {
-    let obj: Student;
+    let addStudent: Student;
     const dialogRef = this.dialog.open(EditStudentsListComponent, {
       data: '',
     });
     dialogRef.afterClosed().subscribe((result) => {
-      obj = {
+      addStudent = {
+        idStudent: result.idStudent,
         name: result.name,
         lastName: result.lastName,
         age: parseInt(result.age),
-        commission: parseInt(result.commission),
+        courseEnrolled: result.courseEnrolled ,
         isActive: result.isActive,
       };
-      return this.studentsService.addStudentService(obj);
+      this.studentsService.addStudentService(addStudent).subscribe((student:Student) =>{
+        this.suscribeStudentList()
+      });
     });
   }
 
-  deleteStudent(data: Student) {
-   this.studentsService.deleteStudentService(data)
+  deleteStudent(deleteStudent: Student) {
+   this.studentsService.deleteStudentService(deleteStudent).subscribe((student:Student) => {
+
+     this.suscribeStudentList()
+   });
+
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

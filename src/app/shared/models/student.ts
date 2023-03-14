@@ -1,7 +1,10 @@
+import { Course } from "./course";
+
 export interface Student{
+    idStudent:string;
     name: string;
     lastName: string;
     age: number;
-    commission:number;
+    courseEnrolled?: Course;
     isActive: boolean;
 }

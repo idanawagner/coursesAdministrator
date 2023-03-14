@@ -2,6 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { CoursesService } from 'src/app/components/courses/services/courses.service';
+import { Course } from 'src/app/shared/models/course';
 import { Student } from 'src/app/shared/models/student';
 
 
@@ -11,26 +14,27 @@ import { Student } from 'src/app/shared/models/student';
   styleUrls: ['./edit-students-list.component.css']
 })
 export class EditStudentsListComponent {
-  editForm: FormGroup;
-
+  editForm!: FormGroup;
+  courses$!: Observable<Array<Course>>
   constructor(
     private dialogRef : MatDialogRef<EditStudentsListComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Student,
-    private router: Router
+    private router: Router,
+    private courseService: CoursesService
   ){
+  }
+  ngOnInit(){
+    this.courses$ = this.courseService.getCourseListService()
     this.editForm = new FormGroup({
-      name : new FormControl(data.name),
-      lastName: new FormControl(data.lastName),
-      age : new FormControl(data.age),
-      commission: new FormControl(data.commission),
-      isActive : new FormControl(data.isActive)
+      name : new FormControl(this.data.name),
+      lastName: new FormControl(this.data.lastName),
+      courseEnrolled: new FormControl(this.data.courseEnrolled),
+      age : new FormControl(this.data.age),
+      isActive : new FormControl(this.data.isActive)
     })
   }
   newFormSubmit(){
     this.data = this.editForm.value
     this.dialogRef.close(this.data)
   }
-  // closeDialog(){
-  //   this.router.navigate(['students'])
-  // }
 }

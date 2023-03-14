@@ -4,7 +4,7 @@
 
       <button mat-button mat-raised-button *ngIf="session.activeUser?.administrator" color="primary" class="mt-4 mb-4" (click)="addCourse()">AddCourse</button>
     </ng-container>
-    <div class="col" *ngFor="let course of courseList">
+    <div class="col" *ngFor="let course of courses$ | async">
       <mat-card class="">
         <mat-card-header>
           <mat-card-title>{{ course.name}}</mat-card-title>
@@ -16,9 +16,15 @@
             Professor: {{course.professor}}
           </p>
           <span>Date: {{course.startDate | formatDate }} - {{course.endDate| formatDate}}</span>
+          <p>
+            Open Enrollment: {{course.openEnrollment}}
+          </p>
         </mat-card-content>
         <mat-card-actions align="end">
           <ng-container *ngIf="session$ | async as session">
+            <button mat-button *ngIf="!session.activeUser?.administrator" color="primary" (click)="redirectToEnrollment()">
+              Enrollment
+            </button>
             <button mat-button *ngIf="session.activeUser?.administrator" color="primary" (click)="editCourse(course)">
               <mat-icon>edit</mat-icon>
             </button>
