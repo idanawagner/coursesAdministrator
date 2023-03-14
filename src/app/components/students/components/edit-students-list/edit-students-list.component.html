@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Edit Students data: {{data.name}}</h1>
+<h1 mat-dialog-title>Students data: {{data.name}}</h1>
 <div mat-dialog-content>
   <form [formGroup]="editForm" (ngSubmit)="newFormSubmit()">
 
@@ -12,13 +12,17 @@
       <input type="text" placeholder="Age" formControlName="age">
     </div>
     <div class="row">
-      <input type="text" placeholder="Commission" formControlName="commission">
+      <mat-select formControlName="courseEnrolled" placeholder="{{data.courseEnrolled?.name|| 'Course Enrolled'}}">
+        <mat-option *ngFor="let course of courses$ | async" [value]="course" >
+          {{course.name}}
+        </mat-option>
+      </mat-select>
+
     </div>
-    <div class="row">
+    <div class="row" >
       <input type="text" placeholder="Active" formControlName="isActive">
     </div>
     <div mat-dialog-actions>
-      <!-- <button mat-button (click)="closeDialog()">Close</button> -->
       <button mat-button type="submit">Edit</button>
     </div>
   </form>

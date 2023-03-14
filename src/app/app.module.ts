@@ -5,8 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 // Modules
-import { token } from './config';
-import { config } from 'rxjs';
+import { token, config } from './environment/config';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/components/register.component';

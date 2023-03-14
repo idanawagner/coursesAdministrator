@@ -25,8 +25,8 @@ export class LoginComponent {
   createForm(){
     let regexEmail: string = '^[a-z]+@[a-z]+\\.[a-z]{2,3}$';
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.pattern(regexEmail)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      email: new FormControl(''),  //, [Validators.required, Validators.pattern(regexEmail)]
+      password: new FormControl(''), //, [Validators.required, Validators.minLength(8)]
       administrator: new FormControl('')
 
     });

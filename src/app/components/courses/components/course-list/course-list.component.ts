@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { token } from 'src/app/config';
+import { token } from 'src/app/environment/config';
 import { Configuration } from 'src/app/shared/models/configuration';
 import { Course } from 'src/app/shared/models/course';
 import { CoursesService } from '../../services/courses.service';
@@ -14,7 +14,7 @@ import { SessionService } from 'src/app/core/services/session.service';
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit{
-  courseList!: Array<Course>;
+  courses$!: Observable<Array<Course>>
   session$!: Observable<Session>;
 
 
@@ -26,23 +26,24 @@ export class CourseListComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-      this.coursesService.getCourseListService()
-        .then( (courses: Array<Course>) => {
-          this.courseList = courses;
-        })
-        .catch((error:any) => {
-          console.log(error);
-        })
+      this.courses$ = this.coursesService.getCourseListService()
       this.session$ = this.sessionService.getSession()
     };
 
   addCourse(){
     this.router.navigate(['courses/addCourse'])
+
   };
-  editCourse(course: Course){
-    this.router.navigate(['courses/editCourse',course])
+  editCourse(editCourse: Course){
+    this.router.navigate(['courses/editCourse',editCourse])
   }
-  deleteCourse(course: Course){
-    this.coursesService.deleteCoursesService(course)
+  deleteCourse(deleteCourse: Course){
+    this.coursesService.deleteCoursesService(deleteCourse).subscribe((course:Course) => {
+      this.courses$ = this.coursesService.getCourseListService()
+    })
+    console.log(deleteCourse)
+  }
+  redirectToEnrollment(){
+    this.router.navigate(['inscriptions'])
   }
 }

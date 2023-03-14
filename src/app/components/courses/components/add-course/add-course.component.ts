@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Course } from 'src/app/shared/models/course';
 import { CoursesService } from '../../services/courses.service';
 
@@ -11,12 +12,12 @@ import { CoursesService } from '../../services/courses.service';
 })
 export class AddCourseComponent {
   formAddCourse!: FormGroup;
-
+  courses$!: Observable<Array<Course>>;
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private courseService: CoursesService,
-    private router: Router
+    private coursesService: CoursesService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -27,23 +28,30 @@ export class AddCourseComponent {
         commission: [''],
         startDate: [''],
         endDate: [''],
+        openEnrollment:['']
       });
 
 
   }
   addCourse(){
     let course:Course = {
+      idCourse: this.formAddCourse.value.idCourse,
       name : this.formAddCourse.value.name,
       professor : this.formAddCourse.value.professor,
       commission : this.formAddCourse.value.commission,
       startDate : this.formAddCourse.value.startDate,
       endDate : this.formAddCourse.value.endDate,
+      openEnrollment: this.formAddCourse.value.openEnrollment
     }
-    this.courseService.addCourseService(course),
-    this.router.navigate(['courses/cards'])
+    this.coursesService.addCourseService(course).subscribe((course:Course) =>{
+
+      this.router.navigate(['courses/cards'])
+    });
+    this.courses$ = this.coursesService.getCourseListService()
+
   }
 
-  cancelEdit(){
+  cancelAdd(){
     this.router.navigate(['courses/cards'])
   }
 }

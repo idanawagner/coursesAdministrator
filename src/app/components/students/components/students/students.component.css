@@ -7,10 +7,8 @@
     font-size: 1rem;
 }
 
-.isDario{
-    background-color: greenyellow;
-}
 
-.isNotDario{
-    background-color: rgb(231, 99, 27);
+.studentList_iconAdd{
+  background-color: white ;
+  margin-left: 73rem;
 }
