@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Course } from 'src/app/shared/models/course';
@@ -23,31 +23,34 @@ export class AddCourseComponent {
   ngOnInit() {
 
       this.formAddCourse = this.fb.group({
-        name: [''],
-        professor: [''],
-        commission: [''],
+        name: ['',[Validators.required]],
+        professor: ['',[Validators.required]],
+        commission: ['',[Validators.required]],
         startDate: [''],
         endDate: [''],
-        openEnrollment:['']
+        openEnrollment:['false']
       });
 
 
   }
   addCourse(){
-    let course:Course = {
-      idCourse: this.formAddCourse.value.idCourse,
-      name : this.formAddCourse.value.name,
-      professor : this.formAddCourse.value.professor,
-      commission : this.formAddCourse.value.commission,
-      startDate : this.formAddCourse.value.startDate,
-      endDate : this.formAddCourse.value.endDate,
-      openEnrollment: this.formAddCourse.value.openEnrollment
-    }
-    this.coursesService.addCourseService(course).subscribe((course:Course) =>{
+    if (this.formAddCourse.valid){
 
-      this.router.navigate(['courses/cards'])
-    });
-    this.courses$ = this.coursesService.getCourseListService()
+      let course:Course = {
+        idCourse: this.formAddCourse.value.idCourse,
+        name : this.formAddCourse.value.name,
+        professor : this.formAddCourse.value.professor,
+        commission : this.formAddCourse.value.commission,
+        startDate : this.formAddCourse.value.startDate,
+        endDate : this.formAddCourse.value.endDate,
+        openEnrollment: this.formAddCourse.value.openEnrollment
+      }
+      this.coursesService.addCourseService(course).subscribe((course:Course) =>{
+
+        this.router.navigate(['courses/cards'])
+      });
+      this.courses$ = this.coursesService.getCourseListService()
+    }
 
   }
 

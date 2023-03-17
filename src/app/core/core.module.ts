@@ -9,7 +9,7 @@ import { ToolbarModule } from "./toolbar/toolbar.module";
   ],
   imports: [
     ToolbarModule,
-    HttpClientModule
+    HttpClientModule,
 
   ],
   exports: [
