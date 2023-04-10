@@ -1,13 +1,9 @@
-<button mat-raised-button (click)="isEditable = !isEditable">
-  {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
-</button>
+<ng-container *ngIf="activeSession$ | async as session">
 
 <mat-stepper linear #stepper>
-
-
     <mat-step [stepControl]="enrollmentForm" [editable]="isEditable">
-      <form [formGroup]="enrollmentForm" (ngSubmit)="enrolledToCourse()">
-        <ng-template matStepLabel>Fill out your name</ng-template>
+      <form [formGroup]="enrollmentForm">
+        <ng-template matStepLabel>Information</ng-template>
         <mat-form-field appearance="fill">
           <!-- Name -->
           <mat-label>Name</mat-label>
@@ -38,37 +34,23 @@
           </mat-label>
         </div>
         <!-- commission -->
-
-
-
         <div>
-          <button mat-button matStepperNext>Next</button>
-          <div mat-actions>
-            <button mat-button type="submit">Register</button>
-          </div>
+          <button mat-button matStepperNext type="button">Next</button>
+
         </div>
       </form>
     </mat-step>
-    <!-- <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field appearance="fill">
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-        required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step> -->
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
+      <ng-template matStepLabel>Payment</ng-template>
+      <p> Information Payment</p>
+      <p> thank you for enrolling in the angular course.</p>
 
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button matStepperPrevious type="button">Back</button>
+
+
+          <div mat-actions>
+            <button mat-button  (click)="enrolledToCourse()">Register</button>
+          </div>
     </mat-step>
-
-</mat-stepper>
+  </mat-stepper>
+</ng-container>

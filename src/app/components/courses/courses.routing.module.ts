@@ -8,8 +8,8 @@ import { EditCourseComponent } from './components/edit-course/edit-course.compon
 
 
 const routes: Routes = [
+  { path: 'cards', component: CourseListComponent },
   { path: '', canActivateChild:[SessionGuard], children: [
-    { path: 'cards', component: CourseListComponent },
     { path: 'editCourse', component: EditCourseComponent, canActivate: [AdminGuard] },
     { path: 'addCourse', component: AddCourseComponent, canActivate: [AdminGuard] },
   ]}
