@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Course } from 'src/app/shared/models/course';
 import { CoursesService } from '../../services/courses.service';
+import { CourseState } from 'src/app/shared/models/course.state';
+import { Store } from '@ngrx/store';
+import { addCourseState } from '../courses-state/courses-state.actions';
 
 @Component({
   selector: 'app-add-course',
@@ -18,6 +21,7 @@ export class AddCourseComponent {
     private fb: FormBuilder,
     private coursesService: CoursesService,
     private router: Router,
+    private coursesStore: Store<CourseState>
   ) {}
 
   ngOnInit() {
@@ -44,14 +48,10 @@ export class AddCourseComponent {
         startDate : this.formAddCourse.value.startDate,
         endDate : this.formAddCourse.value.endDate,
         openEnrollment: this.formAddCourse.value.openEnrollment
-      }
-      this.coursesService.addCourseService(course).subscribe((course:Course) =>{
-
-        this.router.navigate(['courses/cards'])
-      });
-      this.courses$ = this.coursesService.getCourseListService()
+      };
+      this.coursesStore.dispatch(addCourseState({course: course}));
     }
-
+    this.router.navigate(['courses/cards']);
   }
 
   cancelAdd(){

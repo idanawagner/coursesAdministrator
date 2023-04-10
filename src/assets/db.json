@@ -1,0 +1,256 @@
+{
+  "users":[
+    {"email": "admin", "password": "123",  "administrator": true},
+    {"email": "student", "password": "123",  "administrator": false}
+  ],
+
+  "students":[
+    {
+      "name": "Idana",
+      "lastName": "Wagner",
+      "age": 30,
+      "isActive": "true",
+      "courseEnrolled": {
+       "name": "name 1",
+       "professor": "professor 1",
+       "commission": 43,
+       "startDate": "2096-08-27T15:09:16.682Z",
+       "endDate": "2072-10-05T09:14:48.258Z",
+       "openEnrollment": false,
+       "idCourse": "1"
+      },
+      "idStudent": "1"
+     },
+     {
+      "name": "Carlos",
+      "lastName": "Nares",
+      "age": 32,
+      "isActive": "true",
+      "courseEnrolled": {
+       "name": "name 2",
+       "professor": "professor 2",
+       "commission": 25,
+       "startDate": "2031-04-03T14:34:25.644Z",
+       "endDate": "2065-07-07T13:47:51.249Z",
+       "openEnrollment": false,
+       "idCourse": "2"
+      },
+      "idStudent": "2"
+     },
+     {
+      "name": "Mariana",
+      "lastName": "Lopez",
+      "age": 20,
+      "isActive": "false",
+      "courseEnrolled": {
+       "name": "name 1",
+       "professor": "professor 1",
+       "commission": 43,
+       "startDate": "2096-08-27T15:09:16.682Z",
+       "endDate": "2072-10-05T09:14:48.258Z",
+       "openEnrollment": false,
+       "idCourse": "1"
+      },
+      "idStudent": "3"
+     },
+     {
+      "name": "Joaquin",
+      "lastName": "Torres",
+      "age": 40,
+      "isActive": "true",
+      "courseEnrolled": {
+       "name": "name 5",
+       "professor": "professor 5",
+       "commission": 13,
+       "startDate": "2097-06-29T18:14:42.426Z",
+       "endDate": "2062-05-27T12:20:49.865Z",
+       "openEnrollment": false,
+       "idCourse": "5"
+      },
+      "idStudent": "4"
+     }
+  ],
+
+  "courses": [
+    {
+    "name": "name 1",
+    "professor": "professor 1",
+    "commission": 43,
+    "startDate": "2096-08-27T15:09:16.682Z",
+    "endDate": "2072-10-05T09:14:48.258Z",
+    "openEnrollment": false,
+    "idCourse": "1"
+   },
+   {
+    "name": "name 2",
+    "professor": "professor 2",
+    "commission": 25,
+    "startDate": "2031-04-03T14:34:25.644Z",
+    "endDate": "2065-07-07T13:47:51.249Z",
+    "openEnrollment": false,
+    "idCourse": "2"
+   },
+   {
+    "name": "name lalalala",
+    "professor": "professor 5",
+    "commission": 13,
+    "startDate": "2097-06-29T18:14:42.426Z",
+    "endDate": "2062-05-27T12:20:49.865Z",
+    "openEnrollment": "false",
+    "idCourse": "5"
+   },
+   {
+    "name": "name 6",
+    "professor": "professor 6",
+    "commission": 4,
+    "startDate": "2060-03-21T21:23:35.957Z",
+    "endDate": "1991-08-06T15:56:34.126Z",
+    "openEnrollment": false,
+    "idCourse": "6"
+   },
+   {
+    "name": "name 7",
+    "professor": "professor 7",
+    "commission": 25,
+    "startDate": "2079-11-22T15:17:06.113Z",
+    "endDate": "2055-11-17T23:33:11.637Z",
+    "openEnrollment": false,
+    "idCourse": "7"
+   },
+   {
+    "name": "name 8",
+    "professor": "professor 8",
+    "commission": 25,
+    "startDate": "2023-06-27T15:20:47.463Z",
+    "endDate": "2072-11-06T20:43:16.848Z",
+    "openEnrollment": false,
+    "idCourse": "8"
+   },
+   {
+    "name": "name 9",
+    "professor": "professor 9",
+    "commission": 77,
+    "startDate": "1993-04-30T18:01:59.752Z",
+    "endDate": "2056-02-05T02:56:24.945Z",
+    "openEnrollment": false,
+    "idCourse": "9"
+   },
+   {
+    "name": "name 10",
+    "professor": "professor 10",
+    "commission": 71,
+    "startDate": "1997-02-15T07:23:21.977Z",
+    "endDate": "2013-08-03T16:54:08.915Z",
+    "openEnrollment": false,
+    "idCourse": "10"
+   },
+   {
+    "name": "name 11",
+    "professor": "professor 11",
+    "commission": 11,
+    "startDate": "1994-10-21T17:44:50.831Z",
+    "endDate": "2027-05-17T07:15:33.105Z",
+    "openEnrollment": false,
+    "idCourse": "11"
+   },
+   {
+    "name": "name 12",
+    "professor": "professor 12",
+    "commission": 18,
+    "startDate": "2096-02-22T10:23:45.648Z",
+    "endDate": "2021-10-20T18:11:12.355Z",
+    "openEnrollment": false,
+    "idCourse": "12"
+   },
+   {
+    "name": "name 13",
+    "professor": "professor 13",
+    "commission": 49,
+    "startDate": "2094-02-02T22:12:30.824Z",
+    "endDate": "1995-12-14T12:37:52.484Z",
+    "openEnrollment": false,
+    "idCourse": "13"
+   },
+   {
+    "name": "name 14",
+    "professor": "professor 14",
+    "commission": 75,
+    "startDate": "2068-10-29T09:18:24.964Z",
+    "endDate": "2015-05-12T20:12:14.884Z",
+    "openEnrollment": false,
+    "idCourse": "14"
+   },
+   {
+    "name": "name 15",
+    "professor": "professor 15",
+    "commission": 55,
+    "startDate": "2090-10-29T02:00:17.709Z",
+    "endDate": "2054-04-07T14:10:12.191Z",
+    "openEnrollment": false,
+    "idCourse": "15"
+   },
+   {
+    "name": "name 16",
+    "professor": "professor 16",
+    "commission": 81,
+    "startDate": "2095-07-27T01:29:09.216Z",
+    "endDate": "2001-11-27T23:18:46.122Z",
+    "openEnrollment": false,
+    "idCourse": "16"
+   },
+   {
+    "name": "Angular",
+    "professor": "Jose Lopez",
+    "commission": "32334",
+    "startDate": "2023-03-09T03:00:00.000Z",
+    "endDate": "2023-03-23T03:00:00.000Z",
+    "openEnrollment": "false",
+    "idCourse": "17"
+   },
+   {
+    "name": "Angular",
+    "professor": "Jose Lopez",
+    "commission": "32334",
+    "startDate": "2023-03-09T03:00:00.000Z",
+    "endDate": "2023-03-23T03:00:00.000Z",
+    "openEnrollment": true,
+    "idCourse": "17"
+   },
+   {
+    "name": "Angular",
+    "professor": "Jose Lopez",
+    "commission": "32334",
+    "startDate": "2023-03-09T03:00:00.000Z",
+    "endDate": "2023-03-23T03:00:00.000Z",
+    "openEnrollment": true,
+    "idCourse": "17"
+   },
+   {
+    "name": "Angular",
+    "professor": "Jose Lopez",
+    "commission": "32334",
+    "startDate": "2023-03-09T03:00:00.000Z",
+    "endDate": "2023-03-23T03:00:00.000Z",
+    "openEnrollment": "false",
+    "idCourse": "18"
+   },
+   {
+    "name": "Node Js",
+    "professor": "Maria",
+    "commission": "3242",
+    "startDate": "2023-03-23T03:00:00.000Z",
+    "endDate": "2023-03-23T03:00:00.000Z",
+    "openEnrollment": true,
+    "idCourse": "19"
+   },
+   {
+    "name": "Node Js",
+    "professor": "Maria",
+    "commission": "3242",
+    "startDate": "2023-03-23T03:00:00.000Z",
+    "endDate": "2023-03-23T03:00:00.000Z",
+    "openEnrollment": true,
+    "idCourse": "20"
+   }
+  ]
+}

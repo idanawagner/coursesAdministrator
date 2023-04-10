@@ -1,16 +1,27 @@
-import { Component, Inject, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { EditStudentsListComponent } from '../edit-students-list/edit-students-list.component';
-import { Configuration } from 'src/app/shared/models/configuration';
-import { token } from 'src/app/environment/config';
-import { Observable, Subscription } from 'rxjs';
-import { StudentsService } from '../../services/students.service';
+import { Observable } from 'rxjs';
 import { Student } from 'src/app/shared/models/student';
 import { Session } from 'src/app/shared/models/session';
-import { SessionService } from 'src/app/core/services/session.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { LoginState } from 'src/app/components/login/login.state/login-state.reducer';
+import { Store } from '@ngrx/store';
+import { selectSessionState } from 'src/app/components/login/login.state/login-state.selectors';
+import { StudentsState } from '../../state/students-state.reducer';
+import {
+  addStudentState,
+  deleteStudentState,
+  editStudentState,
+  loadStudentsStates,
+  loadedStudents,
+} from '../../state/students-state.actions';
+import {
+  SelectLoadStudents,
+  SelectLoadedStudents,
+} from '../../state/students-state.selectors';
 
 @Component({
   selector: 'app-students',
@@ -19,38 +30,42 @@ import { MatSort } from '@angular/material/sort';
 })
 export class StudentsComponent implements OnInit {
   title: string = 'Student List';
-
-  students$!: Observable<Array<Student>>
-  subscription!: Subscription;
+  loading$!: Observable<Boolean>;
+  students$!: Observable<Array<Student>>;
   dataSource!: MatTableDataSource<Student>;
   @ViewChild(MatTable) table!: MatTable<Student>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  columns: string[] = ['name', 'age','courseEnrolled', 'commission', 'isActive', 'actions'];
-  session$!: Observable<Session>
+  columns: string[] = [
+    'name',
+    'age',
+    'courseEnrolled',
+    'commission',
+    'isActive',
+    'actions',
+  ];
+  session$!: Observable<Session>;
 
   constructor(
     private dialog: MatDialog,
-    private studentsService: StudentsService,
-    @Inject(token) private config: Configuration,
-    private sessionService: SessionService
+    private loginStore: Store<LoginState>,
+    private studentsStore: Store<StudentsState>
   ) {}
 
   ngOnInit(): void {
+    this.loading$ = this.studentsStore.select(SelectLoadStudents);
     this.dataSource = new MatTableDataSource<Student>();
-    this.suscribeStudentList();
-    this.session$ = this.sessionService.getSession();
+    this.session$ = this.loginStore.select(selectSessionState);
+    this.studentsStore.dispatch(loadStudentsStates());
+    this.students$ = this.studentsStore.select(SelectLoadedStudents);
+    this.students$.subscribe((students) => {
+      this.dataSource.data = students;
+    });
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
-  suscribeStudentList(){
-    this.subscription = this.studentsService.getStudentListObservable().subscribe((students: Array<Student>) => {
-      this.dataSource.data = students;
-      });
   }
 
   editStudent(student: Student) {
@@ -63,13 +78,10 @@ export class StudentsComponent implements OnInit {
         name: result.name,
         lastName: result.lastName,
         age: parseInt(result.age),
-        courseEnrolled:result.courseEnrolled,
+        courseEnrolled: result.courseEnrolled,
         isActive: result.isActive,
       };
-      this.studentsService.editStudentService(editStudent).subscribe((student) =>{
-        this.suscribeStudentList()
-        });
-
+      this.studentsStore.dispatch(editStudentState({ student: editStudent }));
     });
   }
 
@@ -84,27 +96,20 @@ export class StudentsComponent implements OnInit {
         name: result.name,
         lastName: result.lastName,
         age: parseInt(result.age),
-        courseEnrolled: result.courseEnrolled ,
+        courseEnrolled: result.courseEnrolled,
         isActive: result.isActive,
       };
-      this.studentsService.addStudentService(addStudent).subscribe((student:Student) =>{
-        this.suscribeStudentList()
-      });
+      this.studentsStore.dispatch(addStudentState({ student: addStudent }));
     });
   }
 
   deleteStudent(deleteStudent: Student) {
-   this.studentsService.deleteStudentService(deleteStudent).subscribe((student:Student) => {
-
-     this.suscribeStudentList()
-   });
-
+    this.studentsStore.dispatch(deleteStudentState({ student: deleteStudent }));
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

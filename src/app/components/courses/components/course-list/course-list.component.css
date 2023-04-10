@@ -1,4 +1,11 @@
-img{
-    width: 100%;
-    align-self: center;
+img {
+  width: 100%;
+  align-self: center;
+}
+
+.containerCards {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr;
+  gap: 4rem;
+  padding: 4rem;
 }

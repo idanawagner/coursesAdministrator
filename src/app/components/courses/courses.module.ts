@@ -9,6 +9,11 @@ import { CoursesRountingModule } from "./courses.routing.module";
 import { EditCourseComponent } from './components/edit-course/edit-course.component';
 import { AddCourseComponent } from './components/add-course/add-course.component';
 import { SharedModule } from "src/app/shared/shared.module";
+import { StoreModule } from "@ngrx/store";
+import { coursesStateFeatureKey, reducer } from "./components/courses-state/courses-state.reducer";
+import { EffectsModule } from "@ngrx/effects";
+import { CoursesStateEffects } from "./components/courses-state/courses-state.effects";
+
 
 
 @NgModule({
@@ -23,10 +28,13 @@ import { SharedModule } from "src/app/shared/shared.module";
     CommonModule,
     SharedModule,
     CoursesRountingModule,
+    StoreModule.forFeature(coursesStateFeatureKey, reducer),
+    EffectsModule.forFeature([CoursesStateEffects])
 
   ],
   exports: [
-    CourseListComponent
+    CourseListComponent,
+    FormatDatePipe
 
   ],
   providers:[

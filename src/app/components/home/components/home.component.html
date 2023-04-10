@@ -1,8 +1,32 @@
-<div class="home_container">
-  <div>
+<carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset" [noWrap]="!noWrap" [interval]="1500"
+  [startFromIndex]="0" [indicatorsByChunk]="true" [isAnimated]="true" [showIndicators]="false">
+  <div class="carousel_container">
 
-    <h1 class="home_title">home con contenido</h1>
+
+    <slide *ngFor="let course of coursesList; let index=index">
+      <mat-card class="carousel_cards">
+        <mat-card-header>
+          <mat-card-title>{{course.name}}</mat-card-title>
+          <mat-card-subtitle>{{course.commission}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="../../../assets/programacion-web.webp" alt="" class="card_img">
+        <mat-card-content>
+          <p>
+            Professor: {{course.professor}}
+          </p>
+          <span>Date: {{course.startDate | formatDate }} - {{course.endDate| formatDate}}</span>
+          <p>
+            Open Enrollment: {{course.openEnrollment}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <ng-container>
+            <button mat-button color="primary" (click)="redirectToLogin()">
+              Enrollment
+            </button>
+          </ng-container>
+        </mat-card-actions>
+      </mat-card>
+    </slide>
   </div>
-
-</div>
-<router-outlet></router-outlet>
+</carousel>

@@ -4,7 +4,10 @@ import { SessionGuard } from 'src/app/core/guards/session.guard';
 import { InscriptionsComponent } from './components/inscriptions/inscriptions.component';
 
 const routes: Routes = [
-  { path: '',component: InscriptionsComponent, canActivateChild:[SessionGuard]}
+  {path: '', canActivateChild: [SessionGuard], children: [
+    {path: 'signUp', component: InscriptionsComponent}
+  ]
+}
 ];
 
 @NgModule({

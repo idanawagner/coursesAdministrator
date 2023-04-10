@@ -7,7 +7,6 @@ import { CoursesModule } from '../courses/courses.module';
 import { StudentsModule } from '../students/students.module';
 
 
-
 @NgModule({
   declarations: [
     InscriptionsComponent
@@ -18,7 +17,7 @@ import { StudentsModule } from '../students/students.module';
     InscriptionsRoutingModule,
     SharedModule,
     CoursesModule,
-    StudentsModule
+    StudentsModule,
   ],
   exports: [InscriptionsComponent]
 })

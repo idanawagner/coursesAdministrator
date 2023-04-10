@@ -1,49 +1,51 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { token } from 'src/app/environment/config';
-import { Configuration } from 'src/app/shared/models/configuration';
 import { Course } from 'src/app/shared/models/course';
-import { CoursesService } from '../../services/courses.service';
 import { Router } from '@angular/router';
-import { Session } from 'src/app/shared/models/session';
-import { SessionService } from 'src/app/core/services/session.service';
+import { Store } from '@ngrx/store';
+import { deleteCourseState, loadCoursesStates } from '../courses-state/courses-state.actions';
+import { CourseState } from 'src/app/shared/models/course.state';
+import { SelectLoadCourses, SelectLoadedCourses } from '../courses-state/courses-state.selectors';
+import { LoginState } from 'src/app/components/login/login.state/login-state.reducer';
+import { User } from 'src/app/shared/models/user';
+import { selectActiveSesion, selectActiveUser } from 'src/app/components/login/login.state/login-state.selectors';
 
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
-  styleUrls: ['./course-list.component.css']
+  styleUrls: ['./course-list.component.css'],
 })
-export class CourseListComponent implements OnInit{
-  courses$!: Observable<Array<Course>>
-  session$!: Observable<Session>;
-
+export class CourseListComponent implements OnInit {
+  courses$!: Observable<Array<Course>>;
+  activeSession$!: Observable<Boolean>;
+  activeUser$!: Observable<User | undefined>;
+  loading$!: Observable<Boolean>;
 
   constructor(
-    private coursesService: CoursesService,
-    @Inject(token) private config: Configuration,
     private router: Router,
-    private sessionService: SessionService
-  ){}
+    private loginStore: Store<LoginState>,
+    private coursesStore: Store<CourseState>
+  ) {}
 
-  ngOnInit(): void {
-      this.courses$ = this.coursesService.getCourseListService()
-      this.session$ = this.sessionService.getSession()
-    };
-
-  addCourse(){
-    this.router.navigate(['courses/addCourse'])
-
-  };
-  editCourse(editCourse: Course){
-    this.router.navigate(['courses/editCourse',editCourse])
+  ngOnInit() {
+    this.loading$ = this.coursesStore.select(SelectLoadCourses);
+    this.coursesStore.dispatch(loadCoursesStates());
+    this.courses$ = this.coursesStore.select(SelectLoadedCourses);
+    this.activeSession$ = this.loginStore.select(selectActiveSesion);
+    this.activeUser$ = this.loginStore.select(selectActiveUser);
   }
-  deleteCourse(deleteCourse: Course){
-    this.coursesService.deleteCoursesService(deleteCourse).subscribe((course:Course) => {
-      this.courses$ = this.coursesService.getCourseListService()
-    })
-    console.log(deleteCourse)
+
+  redirectToaddCourse() {
+    this.router.navigate(['courses/addCourse']);
   }
-  redirectToEnrollment(){
-    this.router.navigate(['inscriptions'])
+  redirectToeditCourse(editCourse: Course) {
+    this.router.navigate(['courses/editCourse', editCourse]);
+  }
+  deleteCourse(deleteCourse: Course) {
+    this.coursesStore.dispatch(deleteCourseState({course: deleteCourse}))
+
+  }
+  redirectToEnrollment() {
+    this.router.navigate(['inscriptions/signUp']);
   }
 }

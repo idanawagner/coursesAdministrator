@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Course } from 'src/app/shared/models/course';
 import { CoursesService } from '../../services/courses.service';
+import { CourseState } from 'src/app/shared/models/course.state';
+import { Store } from '@ngrx/store';
+import { deleteCourseState, editCourseState } from '../courses-state/courses-state.actions';
 
 @Component({
   selector: 'app-edit-course',
@@ -18,7 +21,8 @@ export class EditCourseComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     private courseService: CoursesService,
-    private router: Router
+    private router: Router,
+    private coursesStore: Store<CourseState>
   ) {}
 
   ngOnInit() {
@@ -33,7 +37,6 @@ export class EditCourseComponent implements OnInit {
         openEnrollment: [params.get('openEnrollment'), ]
       });
       this.isChecked= this.formEditCourse.value.openEnrollment
-      console.log(this.isChecked)
     });
   }
   editCourse(){
@@ -46,10 +49,7 @@ export class EditCourseComponent implements OnInit {
       endDate : this.formEditCourse.value.endDate,
       openEnrollment: this.formEditCourse.value.openEnrollment
     }
-    this.courseService.editCourseService(editCourse).subscribe((course: Course) => {
-      this.router.navigate(['courses/cards'])
-      this.courses$ = this.courseService.getCourseListService()
-    });
+    this.coursesStore.dispatch(editCourseState({course: editCourse}))
   }
 
   cancelEdit(){

@@ -16,6 +16,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from  "@angular/material/sort";
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -36,7 +38,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatSlideToggleModule,
     MatPaginatorModule,
     MatSortModule,
-    MatStepperModule
+    MatStepperModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   exports: [
     MatTableModule,
@@ -55,7 +59,9 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatSlideToggleModule,
     MatPaginatorModule,
     MatSortModule,
-    MatStepperModule
+    MatStepperModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
 })
 export class MaterialModule { }
