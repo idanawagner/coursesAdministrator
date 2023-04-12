@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { ToolbarComponent } from './core/toolbar/components/toolbar.component';
+import { StoreModule } from '@ngrx/store';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -17,6 +18,8 @@ describe('AppComponent', () => {
         NoopAnimationsModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        StoreModule.forRoot({})
+
       ]
     }).compileComponents();
   });

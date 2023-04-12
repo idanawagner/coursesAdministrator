@@ -3,6 +3,9 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
 import { CoursesStateEffects } from './courses-state.effects';
+import { CoursesService } from '../../services/courses.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('CoursesStateEffects', () => {
   let actions$: Observable<any>;
@@ -10,9 +13,11 @@ describe('CoursesStateEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule,MatSnackBarModule ],
       providers: [
         CoursesStateEffects,
-        provideMockActions(() => actions$)
+        provideMockActions(() => actions$),
+        CoursesService
       ]
     });
 

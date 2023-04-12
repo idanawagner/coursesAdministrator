@@ -9,9 +9,8 @@ p{
     flex: 1 1 auto;
   }
   .title{
-    color: azure;
+    color: white;
     font-size: 2rem!important;
-    mix-blend-mode: color-dodge;
     padding-left: 31.5rem;
 
   }

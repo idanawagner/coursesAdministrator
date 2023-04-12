@@ -5,33 +5,37 @@
       <mat-spinner></mat-spinner>
     </div>
   </div>
-  <div class="row containerCards" *ngIf="!(loading$ | async)">
+  <div class="addCourse_container">
     <ng-container *ngIf="activeSession$ | async as session">
-
-      <button mat-button mat-raised-button *ngIf="(activeUser$ | async)?.administrator" color="primary" class="mt-4 mb-4" (click)="redirectToaddCourse()">AddCourse</button>
+      <button mat-button mat-raised-button *ngIf="(activeUser$ | async)?.administrator" class="addCourse_btn"
+        (click)="redirectToaddCourse()">AddCourse</button>
     </ng-container>
+  </div>
+  <div class="row containerCards" *ngIf="!(loading$ | async)">
     <div class="col" *ngFor="let course of courses$ | async">
       <mat-card class="">
         <mat-card-header>
           <mat-card-title>{{ course.name}}</mat-card-title>
           <mat-card-subtitle>{{ course.commission}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image src="../../../assets/courses.png" alt="">
+        <img mat-card-image src="../../../assets/programacion-web.webp" alt="">
         <mat-card-content>
           <p>
             Professor: {{course.professor}}
           </p>
           <span>Date: {{course.startDate | formatDate }} - {{course.endDate| formatDate}}</span>
           <p>
-            Open Enrollment: {{course.openEnrollment}}
+            Open Enrollment: {{course.openEnrollment | formatInscriptions}}
           </p>
         </mat-card-content>
         <mat-card-actions align="end">
           <ng-container *ngIf="activeSession$ | async as session">
-            <button mat-button *ngIf="!(activeUser$ | async)?.administrator" color="primary" (click)="redirectToEnrollment()">
+            <button mat-button *ngIf="!(activeUser$ | async)?.administrator" color="primary"
+              (click)="redirectToEnrollment()">
               Enrollment
             </button>
-            <button mat-button *ngIf="(activeUser$ | async)?.administrator" color="primary" (click)="redirectToeditCourse(course)">
+            <button mat-button *ngIf="(activeUser$ | async)?.administrator" color="primary"
+              (click)="redirectToeditCourse(course)">
               <mat-icon>edit</mat-icon>
             </button>
             <button mat-button *ngIf="(activeUser$ | async)?.administrator" color="warn" (click)="deleteCourse(course)">

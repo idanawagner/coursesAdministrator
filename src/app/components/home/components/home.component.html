@@ -1,3 +1,15 @@
+<div class="home">
+  <h2>
+    Learn to code from anywhere and at your own pace
+    <br>
+    <h3>
+      The online programming course platform that will take you to success in your tech career.
+    </h3>
+  </h2>
+</div>
+
+
+
 <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset" [noWrap]="!noWrap" [interval]="1500"
   [startFromIndex]="0" [indicatorsByChunk]="true" [isAnimated]="true" [showIndicators]="false">
   <div class="carousel_container">
@@ -16,14 +28,12 @@
           </p>
           <span>Date: {{course.startDate | formatDate }} - {{course.endDate| formatDate}}</span>
           <p>
-            Open Enrollment: {{course.openEnrollment}}
+            Open Enrollment: {{course.openEnrollment | formatInscriptions}}
           </p>
         </mat-card-content>
         <mat-card-actions align="end">
           <ng-container>
-            <button mat-button color="primary" (click)="redirectToLogin()">
-              Enrollment
-            </button>
+              <button mat-button color="primary" (click)="redirectToEnrollment()">Enrollment</button>
           </ng-container>
         </mat-card-actions>
       </mat-card>

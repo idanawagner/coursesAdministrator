@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, 
 import { map, Observable } from 'rxjs';
 import { Session } from 'src/app/shared/models/session';
 import { Store } from '@ngrx/store';
-import { selectSessionState } from 'src/app/components/login/login.state/login-state.selectors';
+import { SelectSessionState } from 'src/app/components/login/login.state/login-state.selectors';
 import { LoginState } from 'src/app/components/login/login.state/login-state.reducer';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class SessionGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.loginStore.select(selectSessionState).pipe(
+    return this.loginStore.select(SelectSessionState).pipe(
       map((session: Session) => {
         if(session.activeSession){
           return true;
@@ -33,7 +33,7 @@ export class SessionGuard implements CanActivate, CanActivateChild, CanLoad {
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.loginStore.select(selectSessionState).pipe(
+      return this.loginStore.select(SelectSessionState).pipe(
         map((session: Session) => {
           if(session.activeSession){
             return true;
@@ -47,7 +47,7 @@ export class SessionGuard implements CanActivate, CanActivateChild, CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.loginStore.select(selectSessionState).pipe(
+      return this.loginStore.select(SelectSessionState).pipe(
         map((session: Session) => {
           if(session.activeSession){
             return true;

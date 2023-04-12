@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { EditStudentsListComponent } from '../edit-students-list/edit-students-list.component';
@@ -9,19 +9,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { LoginState } from 'src/app/components/login/login.state/login-state.reducer';
 import { Store } from '@ngrx/store';
-import { selectSessionState } from 'src/app/components/login/login.state/login-state.selectors';
+import { SelectSessionState } from 'src/app/components/login/login.state/login-state.selectors';
 import { StudentsState } from '../../state/students-state.reducer';
-import {
-  addStudentState,
-  deleteStudentState,
-  editStudentState,
-  loadStudentsStates,
-  loadedStudents,
-} from '../../state/students-state.actions';
-import {
-  SelectLoadStudents,
-  SelectLoadedStudents,
-} from '../../state/students-state.selectors';
+import { addStudentState, deleteStudentState, editStudentState, loadStudentsStates } from '../../state/students-state.actions';
+import { SelectLoadStudents, SelectLoadedStudents} from '../../state/students-state.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-students',
@@ -50,13 +42,14 @@ export class StudentsComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private loginStore: Store<LoginState>,
-    private studentsStore: Store<StudentsState>
+    private studentsStore: Store<StudentsState>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.loading$ = this.studentsStore.select(SelectLoadStudents);
     this.dataSource = new MatTableDataSource<Student>();
-    this.session$ = this.loginStore.select(selectSessionState);
+    this.session$ = this.loginStore.select(SelectSessionState);
     this.studentsStore.dispatch(loadStudentsStates());
     this.students$ = this.studentsStore.select(SelectLoadedStudents);
     this.students$.subscribe((students) => {
@@ -113,5 +106,9 @@ export class StudentsComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  redirectToStudentDetail(student: Student) {
+    console.log(student);
+    this.router.navigate(['students/detail', student]);
   }
 }

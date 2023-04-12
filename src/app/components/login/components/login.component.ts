@@ -14,7 +14,7 @@ import { LoginService } from '../service/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   hide = true;
   subscription!: Subscription;
@@ -26,10 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) {}
   ngOnInit() {
     this.createForm();
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 
   createForm() {
@@ -47,9 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       administrator: this.loginForm.value.administrator,
     };
 
-    this.subscription = this.loginService
-      .login(user)
-      .subscribe((session: Session) => {
+    this.loginService.login(user).subscribe((session: Session) => {
         this.loginStore.dispatch(loadLoginStates({ session: session }));
         this.router.navigate(['home']);
       });

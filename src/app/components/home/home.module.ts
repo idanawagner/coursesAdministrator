@@ -7,10 +7,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { ToolbarModule } from 'src/app/core/toolbar/toolbar.module';
 import { CoursesModule } from "../courses/courses.module";
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { StoreModule } from '@ngrx/store';
-import { coursesStateFeatureKey } from '../courses/components/courses-state/courses-state.reducer';
-import { reducer } from '../login/login.state/login-state.reducer';
-import { CoursesService } from '../courses/services/courses.service';
+
 
 @NgModule({
     declarations: [
@@ -23,7 +20,7 @@ import { CoursesService } from '../courses/services/courses.service';
       HomeRoutingModule,
       ToolbarModule,
       CoursesModule,
-      CarouselModule,
+
 
       ],
       exports: [

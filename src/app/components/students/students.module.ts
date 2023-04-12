@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StudentsStateEffects } from './state/students-state.effects';
 import { reducer, studentsStateFeatureKey } from "./state/students-state.reducer";
 import { StoreModule } from "@ngrx/store";
+import { StudentDetailComponent } from './student-detail/student-detail.component';
 
 
 
@@ -22,6 +23,7 @@ import { StoreModule } from "@ngrx/store";
     EditStudentsListComponent,
     StudentsComponent,
     FormatNamePipe,
+    StudentDetailComponent,
 
   ],
   imports: [

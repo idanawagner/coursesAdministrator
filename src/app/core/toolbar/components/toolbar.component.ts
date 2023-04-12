@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { Session } from 'src/app/shared/models/session';
 import { SessionService } from '../../services/session.service';
 import { Store } from '@ngrx/store';
-import { selectActiveSesion } from 'src/app/components/login/login.state/login-state.selectors';
+import { SelectActiveSession } from 'src/app/components/login/login.state/login-state.selectors';
+import { logoutLoginStates } from 'src/app/components/login/login.state/login-state.actions';
+import { LoginState } from 'src/app/components/login/login.state/login-state.reducer';
 
 @Component({
   selector: 'app-toolbar',
@@ -16,12 +18,12 @@ export class ToolbarComponent {
   constructor(
     private router: Router,
     private sessionService: SessionService,
-    private loginStore: Store<Session>
+    private loginStore: Store<LoginState>
   ){
 
   }
   ngOnInit(){
-    this.activeSession$ = this.loginStore.select(selectActiveSesion);
+    this.activeSession$ = this.loginStore.select(SelectActiveSession);
   }
   returnHome(){
     this.router.navigate(['home'])
@@ -31,8 +33,7 @@ export class ToolbarComponent {
       activeSession: false,
       activeUser: undefined
     }
-    // this.sessionService.logoutService(sessionLogout);
-    this.router.navigate(['login'])
+    this.loginStore.dispatch(logoutLoginStates({session: sessionLogout}));
+    this.router.navigate(['home'])
   }
-
 }

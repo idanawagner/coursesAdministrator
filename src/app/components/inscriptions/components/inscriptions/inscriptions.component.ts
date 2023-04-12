@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { loadCoursesStates } from 'src/app/components/courses/components/courses-state/courses-state.actions';
 import { SelectLoadedCourses } from 'src/app/components/courses/components/courses-state/courses-state.selectors';
 import { LoginState } from 'src/app/components/login/login.state/login-state.reducer';
-import { selectActiveSesion } from 'src/app/components/login/login.state/login-state.selectors';
+import { SelectActiveSession } from 'src/app/components/login/login.state/login-state.selectors';
 import { addStudentState } from 'src/app/components/students/state/students-state.actions';
 import { StudentsState } from 'src/app/components/students/state/students-state.reducer';
 import { Course } from 'src/app/shared/models/course';
@@ -34,7 +34,7 @@ export class InscriptionsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activeSession$ = this.loginStore.select(selectActiveSesion)
+    this.activeSession$ = this.loginStore.select(SelectActiveSession)
     this.coursesStore.dispatch(loadCoursesStates());
     this.courses$ = this.coursesStore.select(SelectLoadedCourses);
     this.enrollmentForm = new FormGroup({

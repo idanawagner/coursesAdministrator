@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { Session } from 'src/app/shared/models/session';
 import { LoginState } from 'src/app/components/login/login.state/login-state.reducer';
 import { Store } from '@ngrx/store';
-import { selectSessionState } from 'src/app/components/login/login.state/login-state.selectors';
+import { SelectSessionState } from 'src/app/components/login/login.state/login-state.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class AdminGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.loginStore.select(selectSessionState).pipe(
+    return this.loginStore.select(SelectSessionState).pipe(
       map((session: Session) => {
         if(session.activeUser?.administrator){
           return true;

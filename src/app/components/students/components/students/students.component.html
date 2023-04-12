@@ -53,8 +53,8 @@
         <button mat-icon-button *ngIf="session.activeUser?.administrator" color="warn" (click)="deleteStudent(data)">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-icon-button *ngIf="!session.activeUser?.administrator" color="warn" routerLink="/inscriptions">
-          <mat-icon>register</mat-icon>
+        <button mat-icon-button *ngIf="session" color="primary" (click)="redirectToStudentDetail(data)">
+          <mat-icon>info</mat-icon>
         </button>
       </td>
     </ng-container>
