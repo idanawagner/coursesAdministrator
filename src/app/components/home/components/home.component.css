@@ -1,3 +1,25 @@
+.home{
+  height: 14rem;
+  margin-left: 11rem;
+  margin-right: 11rem;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  border-radius: 2rem;
+}
+
+h2{
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  width: 100%;
+}
+h3{
+  font-size: 1rem;
+  letter-spacing: 3px;
+}
+
 .home_title{
   margin: 2rem;
   padding: 1rem;
@@ -13,7 +35,7 @@ slide{
 }
   .carousel_cards{
     width: 90%;
-    height: 26rem;
+    height: 23rem;
     text-align: start;
   }
   .card_img{

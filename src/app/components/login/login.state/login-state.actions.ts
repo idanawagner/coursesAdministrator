@@ -5,3 +5,8 @@ export const loadLoginStates = createAction(
   '[LoginState] Load LoginStates',
   props<{ session: Session }>()
 );
+export const logoutLoginStates = createAction(
+  '[LoginState] Logout LoginStates',
+  props<{ session: Session }>()
+);
+

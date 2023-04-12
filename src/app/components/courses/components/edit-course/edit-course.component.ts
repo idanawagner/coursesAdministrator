@@ -15,7 +15,7 @@ import { deleteCourseState, editCourseState } from '../courses-state/courses-sta
 })
 export class EditCourseComponent implements OnInit {
   formEditCourse!: FormGroup;
-  isChecked!:boolean;
+  @Input() isChecked!:boolean;
   courses$!: Observable<Array<Course>>
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,6 +49,7 @@ export class EditCourseComponent implements OnInit {
       endDate : this.formEditCourse.value.endDate,
       openEnrollment: this.formEditCourse.value.openEnrollment
     }
+
     this.coursesStore.dispatch(editCourseState({course: editCourse}))
   }
 

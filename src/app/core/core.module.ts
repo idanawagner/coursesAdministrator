@@ -2,6 +2,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
 import { ToolbarModule } from "./toolbar/toolbar.module";
+import { CarouselModule } from "ngx-bootstrap/carousel";
 
 @NgModule({
   declarations: [
@@ -10,12 +11,10 @@ import { ToolbarModule } from "./toolbar/toolbar.module";
   imports: [
     ToolbarModule,
     HttpClientModule,
-
   ],
   exports: [
     ToolbarModule,
-    HttpClientModule
-
+    HttpClientModule,
 
 
   ],

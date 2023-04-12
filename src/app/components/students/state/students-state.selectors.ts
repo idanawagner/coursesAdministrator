@@ -1,15 +1,15 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromStudentsState from './students-state.reducer';
 
-export const selectStudentsState = createFeatureSelector<fromStudentsState.StudentsState>(
+export const SelectStudentsState = createFeatureSelector<fromStudentsState.StudentsState>(
   fromStudentsState.studentsStateFeatureKey
 );
 
 export const SelectLoadStudents = createSelector(
-  selectStudentsState,
+  SelectStudentsState,
   (state: fromStudentsState.StudentsState)=> state.loadingStudents
 );
 export const SelectLoadedStudents = createSelector(
-  selectStudentsState,
+  SelectStudentsState,
   (state: fromStudentsState.StudentsState)=> state.students
 )

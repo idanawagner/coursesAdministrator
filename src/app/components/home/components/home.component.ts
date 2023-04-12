@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 import { Course } from 'src/app/shared/models/course';
 import { SelectLoadCourses, SelectLoadedCourses } from '../../courses/components/courses-state/courses-state.selectors';
 import { CoursesService } from '../../courses/services/courses.service';
-import { loadCoursesStates, loadedCourses } from '../../courses/components/courses-state/courses-state.actions';
+import { loadCoursesStates } from '../../courses/components/courses-state/courses-state.actions';
+import { CourseState } from 'src/app/shared/models/course.state';
+import { LoginState } from '../../login/login.state/login-state.reducer';
 
 @Component({
   selector: 'app-home',
@@ -21,12 +23,12 @@ export class HomeComponent implements OnInit {
   courses$!: Observable<Array<Course>>;
   loading$!: Observable<boolean>;
   coursesList!: Array<Course>;
-
+  activeSession$!: Observable<Boolean>
 
   constructor (
-    private coursesStore: Store<Course>,
+    private coursesStore: Store<CourseState>,
+    private loginStore: Store<LoginState>,
     private router: Router,
-    private coursesService: CoursesService
   ) { }
 
   ngOnInit(): void {
@@ -38,13 +40,11 @@ export class HomeComponent implements OnInit {
       this.coursesList = courses;
     });
   }
-  idx = 0
-  index(index: any){
-    this.idx = this.idx + index
-  }
 
-  redirectToLogin(): void {
-    this.router.navigate(['login']);
+  redirectToEnrollment(): void {
+
+      this.router.navigate(['inscriptions/signUp']);
+
   }
 
 }

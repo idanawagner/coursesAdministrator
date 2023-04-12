@@ -13,6 +13,7 @@ import { StoreModule } from "@ngrx/store";
 import { coursesStateFeatureKey, reducer } from "./components/courses-state/courses-state.reducer";
 import { EffectsModule } from "@ngrx/effects";
 import { CoursesStateEffects } from "./components/courses-state/courses-state.effects";
+import { FormatInscriptionsPipe } from './pipes/format-inscriptions.pipe';
 
 
 
@@ -21,7 +22,8 @@ import { CoursesStateEffects } from "./components/courses-state/courses-state.ef
     CourseListComponent,
     FormatDatePipe,
     EditCourseComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    FormatInscriptionsPipe
 
   ],
   imports: [
@@ -34,7 +36,8 @@ import { CoursesStateEffects } from "./components/courses-state/courses-state.ef
   ],
   exports: [
     CourseListComponent,
-    FormatDatePipe
+    FormatDatePipe,
+    FormatInscriptionsPipe
 
   ],
   providers:[

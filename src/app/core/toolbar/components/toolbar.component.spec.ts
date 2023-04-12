@@ -4,6 +4,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { ToolbarComponent } from './toolbar.component';
+import { StoreModule } from '@ngrx/store';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
@@ -14,7 +15,8 @@ describe('ToolbarComponent', () => {
       declarations: [ ToolbarComponent ],
       imports: [
         SharedModule,
-        RouterTestingModule
+        RouterTestingModule,
+        StoreModule.forRoot({})
       ]
     })
     .compileComponents();

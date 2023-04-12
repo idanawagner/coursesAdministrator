@@ -8,7 +8,7 @@ import { CourseState } from 'src/app/shared/models/course.state';
 import { SelectLoadCourses, SelectLoadedCourses } from '../courses-state/courses-state.selectors';
 import { LoginState } from 'src/app/components/login/login.state/login-state.reducer';
 import { User } from 'src/app/shared/models/user';
-import { selectActiveSesion, selectActiveUser } from 'src/app/components/login/login.state/login-state.selectors';
+import { SelectActiveSession, SelectActiveUser } from 'src/app/components/login/login.state/login-state.selectors';
 
 @Component({
   selector: 'app-course-list',
@@ -31,8 +31,8 @@ export class CourseListComponent implements OnInit {
     this.loading$ = this.coursesStore.select(SelectLoadCourses);
     this.coursesStore.dispatch(loadCoursesStates());
     this.courses$ = this.coursesStore.select(SelectLoadedCourses);
-    this.activeSession$ = this.loginStore.select(selectActiveSesion);
-    this.activeUser$ = this.loginStore.select(selectActiveUser);
+    this.activeSession$ = this.loginStore.select(SelectActiveSession);
+    this.activeUser$ = this.loginStore.select(SelectActiveUser);
   }
 
   redirectToaddCourse() {

@@ -1,12 +1,22 @@
 import * as fromLoginState from './login-state.reducer';
-import { selectLoginStateState } from './login-state.selectors';
+import { SelectLoginState } from './login-state.selectors';
 
 describe('LoginState Selectors', () => {
   it('should select the feature state', () => {
-    const result = selectLoginStateState({
-      [fromLoginState.loginStateFeatureKey]: {}
+    const loginState = {
+      session: {
+        activeSession: true,
+        activeUser: {
+          email:"idana@gmail.com",
+          password: "1234",
+          administrator: true,
+        }
+      }
+    }
+    const result = SelectLoginState({
+      [fromLoginState.loginStateFeatureKey]: loginState
     });
 
-    expect(result).toEqual({});
+    expect(result).toEqual(loginState);
   });
 });

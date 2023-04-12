@@ -9,3 +9,13 @@ img {
   gap: 4rem;
   padding: 4rem;
 }
+
+.addCourse_container{
+  margin: 2rem;
+  text-align: end;
+
+}
+.addCourse_btn{
+  background-color:  #ff2a97;;
+  color: white;
+}

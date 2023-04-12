@@ -5,6 +5,8 @@ import { HomeRoutingModule } from '../home-routing.module';
 import { HomeService } from '../services/home.service';
 
 import { HomeComponent } from './home.component';
+import { StoreModule } from '@ngrx/store';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -14,8 +16,10 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ HomeComponent ],
       imports:[
+        SharedModule,
         RouterModule,
-        HomeRoutingModule
+        HomeRoutingModule,
+        StoreModule.forRoot({})
       ],
       providers: [
         HomeService
