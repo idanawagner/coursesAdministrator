@@ -29,10 +29,6 @@ export class StudentDetailComponent implements OnInit {
     this.loading$ = this.studentStore.select(SelectLoadStudents);
     this.students$ = this.studentStore.select(SelectLoadedStudents)
     this.activatedRoute.paramMap.subscribe((params) => {
-      // this.students$.subscribe((stud) =>{
-      // let id = params.get('idStudent')?.toString() || ''
-      // console.log(id)
-
         this.studentDetail = this.fb.group({
           idStudent: params.get('idStudent'),
           name: params.get('name'),
@@ -43,7 +39,6 @@ export class StudentDetailComponent implements OnInit {
         })
 
       })
-    console.log(this.studentDetail)
 
   }
 }

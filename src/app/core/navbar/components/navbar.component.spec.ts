@@ -6,6 +6,7 @@ import { AppModule } from 'src/app/app.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { NavbarComponent } from './navbar.component';
+import { StoreModule } from '@ngrx/store';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -16,6 +17,7 @@ describe('NavbarComponent', () => {
       declarations: [ NavbarComponent ],
       imports:[
         AppRoutingModule,
+        StoreModule.forRoot({})
           ],
       providers:[
       ]
