@@ -1,3 +1,3 @@
 <a mat-button class="navbar_item" [routerLink]="['/courses/cards']" routerLinkActive="router-link-active" >Courses</a>
-<a mat-button class="navbar_item" [routerLink]="['/students/list']" routerLinkActive="router-link-active" >Students</a>
+<a mat-button class="navbar_item" [routerLink]="['/students/list']" routerLinkActive="router-link-active" *ngIf="(activeUser$ | async)?.administrator" >Students</a>
 <a mat-button class="navbar_item" [routerLink]="['/inscriptions/signUp']" routerLinkActive="router-link-active" >Inscriptions</a>

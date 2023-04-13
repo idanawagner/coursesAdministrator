@@ -14,6 +14,7 @@ import { StudentsState } from '../../state/students-state.reducer';
 import { addStudentState, deleteStudentState, editStudentState, loadStudentsStates } from '../../state/students-state.actions';
 import { SelectLoadStudents, SelectLoadedStudents} from '../../state/students-state.selectors';
 import { Router } from '@angular/router';
+import { Course } from 'src/app/shared/models/course';
 
 @Component({
   selector: 'app-students',
@@ -108,7 +109,6 @@ export class StudentsComponent implements OnInit {
     }
   }
   redirectToStudentDetail(student: Student) {
-    console.log(student);
     this.router.navigate(['students/detail', student]);
   }
 }
